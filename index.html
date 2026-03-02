@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finance Fusion</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+    --main-color:#6a0dad;
+    --dark-purple:#4b0082;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Cairo', sans-serif;
+}
+
+header{
+    position:fixed;
+    width:100%;
+    top:0;
+    background:var(--main-color);
+    padding:20px 80px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:1000;
+    color:white;
+    transition:.3s;
+}
+
+header.scrolled{
+    padding:12px 80px;
+    background:var(--dark-purple);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.logo-symbol{
+    font-family:serif;
+    font-size:50px;
+    font-weight:bold;
+    position:relative;
+}
+
+.logo-symbol::after{
+    content:"";
+    position:absolute;
+    width:90px;
+    height:30px;
+    border-bottom:3px solid white;
+    border-radius:50%;
+    bottom:8px;
+    right:-15px;
+    transform:rotate(-12deg);
+}
+
+.logo-text h1{
+    font-size:18px;
+    font-weight:900;
+}
+
+.logo-text p{
+    font-size:12px;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:35px;
+}
+
+nav ul li a{
+    text-decoration:none;
+    color:white;
+    font-size:16px;
+    font-weight:700;
+    transition:.3s;
+}
+
+nav ul li a:hover{
+    color:#ffd700;
+}
+
+.menu-toggle{
+    display:none;
+    font-size:26px;
+    cursor:pointer;
+}
+
+.language-switch{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.language-switch span{
+    padding:5px 10px;
+    border-radius:5px;
+    transition:.3s;
+}
+
+.language-switch span.active{
+    background:white;
+    color:var(--main-color);
+}
+
+/* ===== HERO ===== */
+.hero{
+    height:100vh;
+    background:linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.75)),
+    url("https://ldc.sa/wp-content/uploads/2023/11/accounting-concept-businesswoman-working-using-calculator-with-money-stack-office_34152-2245.jpg");
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    padding:20px;
+}
+
+.hero h2{
+    font-size:55px;
+    font-weight:900;
+}
+
+.hero p{
+    margin:20px auto;
+    font-size:22px;
+    max-width:800px;
+}
+
+.hero a{
+    display:inline-block;
+    margin-top:30px;
+    padding:15px 40px;
+    background:var(--main-color);
+    color:white;
+    border-radius:40px;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.hero a:hover{
+    background:var(--dark-purple);
+}
+
+.white-section{
+    background:white;
+    color:black;
+    padding:120px 80px;
+    text-align:center;
+}
+
+.white-section h2{
+    color:var(--main-color);
+    font-size:40px;
+    margin-bottom:25px;
+}
+
+.white-section p{
+    max-width:850px;
+    margin:auto;
+    font-size:18px;
+    line-height:1.8;
+}
+
+.services{
+    background:#f5f5f5;
+    color:black;
+    padding:120px 80px;
+    text-align:center;
+}
+
+.services h2{
+    font-size:40px;
+    margin-bottom:60px;
+    color:var(--main-color);
+}
+
+.service-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:40px;
+}
+
+.service-card{
+    position:relative;
+    background:white;
+    padding:20px 20px 40px 20px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.3s;
+    text-align:center;
+    overflow:hidden;
+}
+
+.service-card:hover{
+    transform:translateY(-8px);
+}
+
+.service-card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+
+.service-card i{
+    font-size:40px;
+    color:var(--main-color);
+    margin-bottom:15px;
+}
+
+.contact-form{
+    max-width:600px;
+    margin:40px auto 0;
+}
+
+.contact-form input,
+.contact-form textarea{
+    width:100%;
+    padding:15px;
+    margin-bottom:20px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    font-family:'Cairo';
+}
+
+.contact-form button{
+    background:var(--main-color);
+    color:white;
+    padding:15px 40px;
+    border:none;
+    border-radius:40px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.contact-form button:hover{
+    background:var(--dark-purple);
+}
+
+.whatsapp{
+    position:fixed;
+    bottom:25px;
+    left:25px;
+    background:#25d366;
+    color:white;
+    font-size:28px;
+    width:60px;
+    height:60px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:50%;
+    text-decoration:none;
+    box-shadow:0 5px 20px rgba(0,0,0,.3);
+}
+
+footer{
+    background:black;
+    color:#aaa;
+    text-align:center;
+    padding:30px;
+}
+
+@media(max-width:900px){
+    nav ul{
+        position:absolute;
+        top:80px;
+        right:0;
+        background:var(--main-color);
+        width:100%;
+        flex-direction:column;
+        text-align:center;
+        display:none;
+        padding:20px 0;
+    }
+
+    nav ul.active{
+        display:flex;
+    }
+
+    .menu-toggle{
+        display:block;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <div class="logo-symbol">FF</div>
+        <div class="logo-text">
+            <h1 data-lang-ar="Finance Fusion | فاينانس فيوجن" data-lang-en="Finance Fusion | Accounting & Consulting">Finance Fusion | فاينانس فيوجن</h1>
+            <p data-lang-ar="خدمات المحاسبة والاستشارات المالية" data-lang-en="Accounting and Financial Consulting Services">خدمات المحاسبة والاستشارات المالية</p>
+        </div>
+    </div>
+
+    <div class="language-switch">
+        <span id="ar-btn" class="active">العربي</span>
+        <span id="en-btn">English</span>
+    </div>
+
+    <div class="menu-toggle"><i class="fa fa-bars"></i></div>
+
+    <nav>
+        <ul>
+            <li><a href="#" data-lang-ar="الصفحة الرئيسية" data-lang-en="Home">الصفحة الرئيسية</a></li>
+            <li><a href="#services" data-lang-ar="خدماتنا" data-lang-en="Services">خدماتنا</a></li>
+            <li><a href="#contact" data-lang-ar="اتصل بنا" data-lang-en="Contact">اتصل بنا</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero">
+    <div>
+        <h2 data-lang-ar="إدارة مالية بمعايير عالمية" data-lang-en="World-Class Financial Management">إدارة مالية بمعايير عالمية</h2>
+        <p data-lang-ar="نقدم خدمات استشارية متخصصة وحلول محاسبية متكاملة داخل دولة الإمارات العربية المتحدة وخارجها." 
+           data-lang-en="We provide specialized consulting services and comprehensive accounting solutions within the UAE and beyond.">
+           نقدم خدمات استشارية متخصصة وحلول محاسبية متكاملة داخل دولة الإمارات العربية المتحدة وخارجها.
+        </p>
+        <a href="#services" data-lang-ar="خدماتنا" data-lang-en="Our Services">خدماتنا</a>
+    </div>
+</section>
+
+<section class="services" id="services">
+    <h2 data-lang-ar="خدماتنا المميزة" data-lang-en="Our Premium Services">خدماتنا المميزة</h2>
+    <div class="service-grid">
+        <!-- الخدمات كما في النسخة السابقة -->
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1554224154-26032ffc0d07" alt="">
+            <i class="fa-solid fa-calculator"></i>
+            <h3 data-lang-ar="المحاسبة المتكاملة" data-lang-en="Comprehensive Accounting">المحاسبة المتكاملة</h3>
+            <p data-lang-ar="إدارة كاملة للسجلات المالية وإعداد التقارير بدقة واحتراف." data-lang-en="Full management of financial records and professional reporting.">إدارة كاملة للسجلات المالية وإعداد التقارير بدقة واحتراف.</p>
+        </div>
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f" alt="">
+            <i class="fa-solid fa-chart-line"></i>
+            <h3 data-lang-ar="التحليل المالي" data-lang-en="Financial Analysis">التحليل المالي</h3>
+            <p data-lang-ar="تقارير وتحليلات مالية تدعم اتخاذ القرار الاستراتيجي." data-lang-en="Financial reports and analysis that support strategic decision-making.">تقارير وتحليلات مالية تدعم اتخاذ القرار الاستراتيجي.</p>
+        </div>
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1586486855514-8c633cc6fd38" alt="">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+            <h3 data-lang-ar="الاستشارات الضريبية" data-lang-en="Tax Consulting">الاستشارات الضريبية</h3>
+            <p data-lang-ar="حلول ضريبية متكاملة وفق أعلى المعايير المهنية." data-lang-en="Comprehensive tax solutions according to the highest professional standards.">حلول ضريبية متكاملة وفق أعلى المعايير المهنية.</p>
+        </div>
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" alt="">
+            <i class="fa-solid fa-users"></i>
+            <h3 data-lang-ar="إدارة الرواتب" data-lang-en="Payroll Management">إدارة الرواتب</h3>
+            <p data-lang-ar="تنظيم عمليات الرواتب والالتزامات المالية بكفاءة وسرية." data-lang-en="Organizing payroll processes and financial obligations efficiently and confidentially.">تنظيم عمليات الرواتب والالتزامات المالية بكفاءة وسرية.</p>
+        </div>
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40" alt="">
+            <i class="fa-solid fa-chart-pie"></i>
+            <h3 data-lang-ar="دراسات الجدوى الاقتصادية" data-lang-en="Economic Feasibility Studies">دراسات الجدوى الاقتصادية</h3>
+            <p data-lang-ar="إعداد دراسات جدوى شاملة تساعد في تقييم المشاريع واتخاذ قرارات استثمارية دقيقة." data-lang-en="Comprehensive feasibility studies to evaluate projects and make precise investment decisions.">إعداد دراسات جدوى شاملة تساعد في تقييم المشاريع واتخاذ قرارات استثمارية دقيقة.</p>
+        </div>
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c" alt="">
+            <i class="fa-solid fa-gears"></i>
+            <h3 data-lang-ar="إعداد وتقييم أنظمة ERP" data-lang-en="ERP Systems Implementation & Evaluation">إعداد وتقييم أنظمة ERP</h3>
+            <p data-lang-ar="تحليل واختيار وتقييم أنظمة تخطيط الموارد المؤسسية لضمان كفاءة العمليات." data-lang-en="Analyze, select, and evaluate enterprise resource planning systems to ensure operational efficiency.">تحليل واختيار وتقييم أنظمة تخطيط الموارد المؤسسية لضمان كفاءة العمليات.</p>
+        </div>
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72" alt="">
+            <i class="fa-solid fa-briefcase"></i>
+            <h3 data-lang-ar="الاستشارات الإدارية" data-lang-en="Management Consulting">الاستشارات الإدارية</h3>
+            <p data-lang-ar="تطوير الهياكل الإدارية وتحسين الأداء المؤسسي لتحقيق أفضل النتائج." data-lang-en="Develop administrative structures and improve institutional performance for optimal results.">تطوير الهياكل الإدارية وتحسين الأداء المؤسسي لتحقيق أفضل النتائج.</p>
+        </div>
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c" alt="">
+            <i class="fa-solid fa-user-tie"></i>
+            <h3 data-lang-ar="الموارد البشرية" data-lang-en="Human Resources">الموارد البشرية</h3>
+            <p data-lang-ar="تخطيط وتنظيم عمليات الموارد البشرية وبناء فرق عمل فعالة." data-lang-en="Planning and organizing HR processes and building effective teams.">تخطيط وتنظيم عمليات الموارد البشرية وبناء فرق عمل فعالة.</p>
+        </div>
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf" alt="">
+            <i class="fa-solid fa-lightbulb"></i>
+            <h3 data-lang-ar="استراتيجية الأعمال" data-lang-en="Business Strategy">استراتيجية الأعمال</h3>
+            <p data-lang-ar="بناء استراتيجيات نمو تنافسية طويلة الأمد تدعم استدامة الشركات." data-lang-en="Build long-term competitive growth strategies to support business sustainability.">بناء استراتيجيات نمو تنافسية طويلة الأمد تدعم استدامة الشركات.</p>
+        </div>
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85" alt="">
+            <i class="fa-solid fa-scale-balanced"></i>
+            <h3 data-lang-ar="تقييم الشركات" data-lang-en="Company Valuation">تقييم الشركات</h3>
+            <p data-lang-ar="تقييم احترافي لقيمة الشركات لأغراض الاستثمار أو البيع أو الشراكات." data-lang-en="Professional valuation of companies for investment, sale, or partnership purposes.">تقييم احترافي لقيمة الشركات لأغراض الاستثمار أو البيع أو الشراكات.</p>
+        </div>
+    </div>
+</section>
+
+<section class="white-section" id="contact">
+    <h2 data-lang-ar="اتصل بنا" data-lang-en="Contact Us">اتصل بنا</h2>
+
+    <form class="contact-form" action="https://formspree.io/f/mlgwvgqv" method="POST">
+        <input type="text" name="name" placeholder="الاسم الكامل" data-lang-ar="الاسم الكامل" data-lang-en="Full Name" required>
+        <input type="email" name="email" placeholder="البريد الإلكتروني" data-lang-ar="البريد الإلكتروني" data-lang-en="Email" required>
+        <textarea name="message" rows="5" placeholder="رسالتك" data-lang-ar="رسالتك" data-lang-en="Your Message"></textarea>
+        <button type="submit" data-lang-ar="إرسال" data-lang-en="Send">إرسال</button>
+    </form>
+</section>
+
+<footer>
+© 2026 Finance Fusion - جميع الحقوق محفوظة
+</footer>
+
+<a href="https://wa.me/971557069084" class="whatsapp" target="_blank">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+window.addEventListener("scroll",function(){
+    document.querySelector("header").classList.toggle("scrolled",window.scrollY>50)
+});
+
+document.querySelector(".menu-toggle").onclick=function(){
+    document.querySelector("nav ul").classList.toggle("active")
+};
+
+// ===== LANGUAGE SWITCH =====
+const arBtn = document.getElementById('ar-btn');
+const enBtn = document.getElementById('en-btn');
+const elements = document.querySelectorAll('[data-lang-ar]');
+
+function setLanguage(lang){
+    elements.forEach(el=>{
+        el.textContent = el.dataset['lang' + (lang==='ar'?'Ar':'En')];
+    });
+    if(lang==='ar'){
+        arBtn.classList.add('active');
+        enBtn.classList.remove('active');
+        document.documentElement.dir='rtl';
+    }else{
+        enBtn.classList.add('active');
+        arBtn.classList.remove('active');
+        document.documentElement.dir='ltr';
+    }
+}
+
+arBtn.onclick = ()=>setLanguage('ar');
+enBtn.onclick = ()=>setLanguage('en');
+</script>
+
+</body>
+</html>
